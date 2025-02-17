@@ -1,12 +1,17 @@
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
+import { useState } from 'react';
+import React from 'react'
+import { Select } from 'src/ui/select';
+import { OptionType } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
 
 export const ArticleParamsForm = () => {
+	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<>
-			<ArrowButton isOpen={false} onClick={() => {}} />
+			<ArrowButton isOpen={false} onClick={() => setIsOpen(!isOpen)} onClose={() => setIsOpen(false)} onChange={() => {}} />
 			<aside className={styles.container}>
 				<form className={styles.form}>
 					<div className={styles.bottomContainer}>
