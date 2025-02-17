@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, CSSProperties } from 'react';
 import clsx from 'clsx';
-import { useState } from 'react';
 
 import { Article } from './components/article/Article';
 import { ArticleParamsForm } from './components/article-params-form/ArticleParamsForm';
@@ -14,7 +13,6 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 export const App = () => {
-	const[defaultArticleState, setDefaultArticleState] = useState();
 
 	return (
 		<main
@@ -28,7 +26,7 @@ export const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm changeArticleState={setDefaultArticleState} />
+			<ArticleParamsForm />
 			<Article />
 		</main>
 	);
