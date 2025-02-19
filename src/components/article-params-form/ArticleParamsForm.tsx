@@ -20,7 +20,7 @@ import { Text } from 'src/ui/text';
 export const ArticleParamsForm: React.FC<{
 	setDesignState: (state: ArticleStateType) => void;
 }> = ({ setDesignState }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isMenuOpen, setMenuIsOpen] = useState(false);
 
 	const [backgroundColor, setBackgroundColor] = useState(
 		defaultArticleState.backgroundColor
@@ -59,14 +59,14 @@ export const ArticleParamsForm: React.FC<{
 	};
 
 	useEffect(() => {
-		if (!isOpen) return;
+		if (!isMenuOpen) return;
 
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
 				sideBar.current &&
 				!sideBar.current.contains(event.target as HTMLElement)
 			) {
-				setIsOpen(false);
+				setMenuIsOpen(false);
 			}
 		};
 
@@ -74,15 +74,15 @@ export const ArticleParamsForm: React.FC<{
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [isOpen]);
+	}, [isMenuOpen]);
 
 	return (
 		<>
-			<ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+			<ArrowButton isOpen={isMenuOpen} onClick={() => setMenuIsOpen(!isMenuOpen)} />
 			<aside
 				ref={sideBar}
 				className={styles.container}
-				style={{ transform: isOpen ? 'translateX(0)' : 'translateX(-100%)' }}>
+				style={{ transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)' }}>
 				<form
 					className={styles.form}
 					onSubmit={handleSubmit}
